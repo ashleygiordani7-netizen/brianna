@@ -1,4 +1,4 @@
-name: Deploy Jekyll site to GitHub Pages
+name: Build and Deploy Jekyll site to GitHub Pages
 
 on:
   push:
@@ -27,19 +27,17 @@ jobs:
         with:
           source: ./
           destination: ./_site
-      - name: Show built files
-        run: ls -R ./_site   
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./_site
 
   deploy:
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
