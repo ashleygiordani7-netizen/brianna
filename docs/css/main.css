@@ -407,20 +407,56 @@ body {
   transform-origin: right;
   transform: rotate(-70deg) rotateY(30deg) scale(0.6);
 }
+
+
 .flower__light {
   position: absolute;
   bottom: 0vmin;
-  width: 1vmin;
-  height: 1vmin;
-  background-color: rgb(255, 251, 0);
-  border-radius: 50%;
-  filter: blur(0.2vmin);
-  -webkit-animation: light-ans 4s linear infinite backwards;
+  width: 2vmin;
+  height: 2vmin;
+  background-color: rgb(255, 0, 85); /* pink-red heart color */
+  transform: rotate(-45deg);
   animation: light-ans 4s linear infinite backwards;
+  filter: blur(0.1vmin);
 }
+
+.flower__light::before,
+.flower__light::after {
+  content: "";
+  position: absolute;
+  width: 2vmin;
+  height: 2vmin;
+  background-color: rgb(255, 0, 85);
+  border-radius: 50%;
+}
+
+.flower__light::before {
+  top: -1vmin;
+  left: 0;
+}
+
+.flower__light::after {
+  left: 1vmin;
+  top: 0;
+}
+
+@keyframes light-ans {
+  0% { opacity: 0.6; transform: rotate(-45deg) scale(0.9); }
+  50% { opacity: 1; transform: rotate(-45deg) scale(1.1); }
+  100% { opacity: 0.6; transform: rotate(-45deg) scale(0.9); }
+}
+
 .flower__light:nth-child(odd) {
-  background-color: #23ff44;
+ transform:  rotate(45deg);
 }
+
+
+.flower__light:nth-child(odd),
+.flower__light:nth-child(odd)::before,
+.flower__light:nth-child(odd)::after {
+  background-color: pink;
+}
+
 .flower__light--1 {
   left: -2vmin;
   -webkit-animation-delay: 1s;
